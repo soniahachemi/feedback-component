@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("feedback.createFeedback")
-    .controller("modalCreateFeedbackCtrl", function ($scope, $uibModalInstance, wsFeedback, Toast, $location, app_version, app_name) {
+    .controller("modalCreateFeedbackCtrl", function ($scope, $uibModalInstance, wsSubmitFeedback, Toast, $location, app_version, app_name) {
         var self = this;
 
         self.app_version = app_version;
@@ -42,7 +42,7 @@ angular.module("feedback.createFeedback")
         };
 
         self.submitFeedback = function(){
-            wsFeedback.submitFeedback({
+            wsSubmitFeedback.submitFeedback({
                 'message' : self.message,
                 'screenshot' : self.screenshot,
                 'url' : self.url,
@@ -50,19 +50,21 @@ angular.module("feedback.createFeedback")
                 'app_name' : app_name,
                 'type' : self.type
             })
-            .then( function(id){
+            .then( function(ret){
                 self.close();
-                Toast.success("Feedback submited successfully - id : "+id);
+                console.log(ret.data['data']);
+                Toast.success("Feedback submited successfully - id : "+ret.data['data']);
             });
         };
     })
     .service("wsSubmitFeedback", function ($q, Ws, deviceDetector, $http) {
 
-        this.submitFeedback = function (params) {
-            console.log('ghgjyuj');
-                return post({
-                    data : {
-                        action  : 'submitFeedback',
+       this.submitFeedback = function (params) {
+            var req = {
+             method: 'POST',
+             url: '/ws/ws.cgi',
+             data: { action: 'submitFeedback',
+                        objectType : 'feedback',
                         url : params.url,
                         message : params.message,
                         screenshot : params.screenshot,
@@ -75,7 +77,8 @@ angular.module("feedback.createFeedback")
                         app_version : params.app_version,
                         type : params.type
                     }
-                });
-            };
+            }
+            return $http(req);
+        };
     })
 ;
