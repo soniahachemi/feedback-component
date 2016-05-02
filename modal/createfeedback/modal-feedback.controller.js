@@ -55,5 +55,27 @@ angular.module("feedback.createFeedback")
                 Toast.success("Feedback submited successfully - id : "+id);
             });
         };
-    }
-);
+    })
+    .service("wsSubmitFeedback", function ($q, Ws, deviceDetector, $http) {
+
+        this.submitFeedback = function (params) {
+            console.log('ghgjyuj');
+                return post({
+                    data : {
+                        action  : 'submitFeedback',
+                        url : params.url,
+                        message : params.message,
+                        screenshot : params.screenshot,
+                        browser : deviceDetector.browser,
+                        device : deviceDetector.device,
+                        os : deviceDetector.os,
+                        os_version : deviceDetector.os_version,
+                        browser_version : deviceDetector.browser_version,
+                        app_name : params.app_name,
+                        app_version : params.app_version,
+                        type : params.type
+                    }
+                });
+            };
+    })
+;
