@@ -1,5 +1,5 @@
 "use strict";
 
-describe("Controller: MainModalCreateFeedbackCtrl", function () {
+describe("Controller: modalCreateFeedbackCtrl", function () {
 
 });

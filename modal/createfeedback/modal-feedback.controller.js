@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("feedback.createFeedback")
-    .controller("MainModalCreateFeedbackCtrl", function ($scope, $uibModalInstance, wsFeedback, Toast, $location, app_version, app_name) {
+    .controller("modalCreateFeedbackCtrl", function ($scope, $uibModalInstance, wsFeedback, Toast, $location, app_version, app_name) {
         var self = this;
 
         self.app_version = app_version;

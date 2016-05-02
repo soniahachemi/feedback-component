@@ -1,6 +1,15 @@
 "use strict";
 
-angular.module("feedback.createFeedback")
+angular.module("feedback.createFeedback", [
+  "ngMessages",
+  "ngSanitize",
+  "ui.bootstrap",
+  "toaster",
+  "ui.router",
+  "pagination-front",
+  "ngStorage",
+  "ng.deviceDetector"
+])
 .directive("dirCreateFeedback", function ($uibModal) {
     return {
         restrict : "EA",
@@ -8,9 +17,9 @@ angular.module("feedback.createFeedback")
             element.text("Create");
             element.on("click", function () {
                 $uibModal.open({
-                    templateUrl: 'components/feedback/modal/createfeedback/modal-feedback.html',
-                    controller: "MainModalCreateFeedbackCtrl",
-                    controllerAs: "MainModalCreateFeedbackCtrl",
+                    templateUrl: 'bower_components/feedback/modal/createfeedback/modal-feedback.html',
+                    controller: "modalCreateFeedbackCtrl",
+                    controllerAs: "modalCreateFeedbackCtrl",
                     size : 'lg',
                     resolve: {
                         app_version: function () {
