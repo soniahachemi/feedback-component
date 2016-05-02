@@ -6,7 +6,7 @@
   "description": "create feedback",
   "main": [
       "feedback.directive.js",
-      "modal-feedback.controller.js",
+      "modal-feedback.controller.js"
   ],
   "moduleType": [],
   "license": "MIT",
