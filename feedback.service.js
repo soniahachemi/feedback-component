@@ -54,7 +54,7 @@ angular.module("feedback.createFeedback")
         });
     })
 
-    .service("wsSubmitFeedback", function ($q, deviceDetector, $http) {
+    .service("wsSubmitFeedback", function ($q, deviceDetector, $http, wsFeedback) {
 
 
 
