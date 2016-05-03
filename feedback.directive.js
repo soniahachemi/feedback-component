@@ -17,7 +17,7 @@ angular.module("feedback.createFeedback", [
             element.text("Create");
             element.on("click", function () {
                 $uibModal.open({
-                    templateUrl: 'bower_components/feedback/modal/createfeedback/modal-feedback.html',
+                    templateUrl: 'bower_components/feedback/modal/modal-feedback.html',
                     controller: "modalCreateFeedbackCtrl",
                     controllerAs: "modalCreateFeedbackCtrl",
                     size : 'lg',
