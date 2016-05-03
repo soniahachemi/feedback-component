@@ -5,10 +5,10 @@
   ],
   "description": "create feedback",
   "main": [
-      "feedback.directive.min.js",
-      "modal/modal-feedback.controller.min.js",
-      "ws/feedback.service.min.js",
-      "fileread/fileread.directive.min.js"
+      "feedback.directive.js",
+      "modal/modal-feedback.controller.js",
+      "ws/feedback.service.js",
+      "fileread/fileread.directive.js"
   ],
   "moduleType": [],
   "license": "MIT",

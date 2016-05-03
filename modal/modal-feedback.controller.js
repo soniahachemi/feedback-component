@@ -9,7 +9,7 @@ angular.module("feedback.createFeedback")
 
         self.message = "";
 
-        self.type="bug";
+        self.type = "bug";
 
         // self.screenshot = screenshot to submit. Value is either screenshotDef, screenshotFile or null
         self.screenshot;
