@@ -50,9 +50,9 @@ angular.module("feedback.createFeedback")
                 'app_name' : app_name,
                 'type' : self.type
             })
-            .then( function(ret){
+            .then( function(id){
                 self.close();
-                Toast.success("Feedback submited successfully - id : "+ret.data['data']);
+                Toast.success("Feedback submited successfully - id : "+id);
             });
         };
     })
