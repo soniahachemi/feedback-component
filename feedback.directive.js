@@ -18,7 +18,7 @@ angular.module("feedback.createFeedback", [
             appVersion : '@'
         },
         link     : function (scope, element, attrs) {
-            element.text("Create");
+            element.text("Feedback");
             element.on("click", function () {
                 $uibModal.open({
                     templateUrl: 'bower_components/feedback/modal/modal-feedback.html',
