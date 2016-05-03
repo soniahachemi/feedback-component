@@ -7,7 +7,6 @@ angular.module("feedback.createFeedback")
 
         var WsPath = '/datacenter/tools/feedback/ws/';
 
-
         function treatResult (result) {
             var data = result.data;
 
@@ -54,9 +53,8 @@ angular.module("feedback.createFeedback")
         });
     })
 
+
     .service("wsSubmitFeedback", function ($q, deviceDetector, $http, wsFeedback) {
-
-
 
         var objectType = "feedback",
             timeoutActions = {};
