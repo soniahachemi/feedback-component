@@ -1,11 +1,7 @@
 angular.module("feedback.createFeedback")
 
-    .service("wsFeedback", function ($q, deviceDetector, $http) {
+    .service("wsSubmitFeedback", function ($q, deviceDetector, $http, Toast) {
         'use strict';
-
-        var self = this;
-
-        var WsPath = '/datacenter/tools/feedback/ws/';
 
         function treatResult (result) {
             var data = result.data;
@@ -31,30 +27,16 @@ angular.module("feedback.createFeedback")
             return $q.reject(error);
         }
 
-        function operation (opts) {
-
-            if (!~opts.url.indexOf(WsPath)) {
-                opts.url = WsPath + opts.url;
-            }
-
-            return $http(opts).then(
+        function sendPostReq (opts) {
+            return $http(angular.extend(opts, {
+                url     : '/datacenter/tools/feedback/ws/ws.cgi',
+                method  : 'post'
+            }))
+            .then(
                 treatResult,
                 treatError
             );
         }
-
-        angular.forEach(['get', 'post'], function (op) {
-            self[op] = function (url, opts) {
-                return operation(angular.extend(opts, {
-                    url     : url,
-                    method  : op
-                }));
-            };
-        });
-    })
-
-
-    .service("wsSubmitFeedback", function ($q, deviceDetector, $http, wsFeedback) {
 
         var objectType = "feedback",
             timeoutActions = {};
@@ -68,17 +50,6 @@ angular.module("feedback.createFeedback")
             return timeoutActions[actionName].promise;
         }
 
-        function get (opts) {
-            opts.params.objectType = objectType;
-
-            if (!opts.noTimeout && !opts.timeout) {
-                opts.timeout = cancelCreateTimeout(opts.params.action);
-            }
-            delete opts.noTimeout;
-
-            return wsFeedback.get('ws.cgi', opts);
-        }
-
         function post (opts) {
             opts.data.objectType = objectType;
 
@@ -87,7 +58,7 @@ angular.module("feedback.createFeedback")
             }
             delete opts.noTimeout;
 
-            return wsFeedback.post('ws.cgi', opts);
+            return sendPostReq(opts);
         }
 
 

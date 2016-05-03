@@ -4,9 +4,6 @@ angular.module("feedback.createFeedback")
     .controller("modalCreateFeedbackCtrl", function ($scope, $uibModalInstance, wsSubmitFeedback, Toast, $location, app_version, app_name) {
         var self = this;
 
-        self.app_version = app_version;
-        self.app_name = app_name;
-
         self.message = "";
 
         self.type="bug";
@@ -19,8 +16,6 @@ angular.module("feedback.createFeedback")
 
         // self.screenshotDef = default screenshot, the one we capture
         self.screenshotDef;
-
-        self.url = $location.absUrl();
 
         html2canvas( [ document.body ], {
           onrendered: function(canvas) {
@@ -45,7 +40,7 @@ angular.module("feedback.createFeedback")
             wsSubmitFeedback.submitFeedback({
                 'message' : self.message,
                 'screenshot' : self.screenshot,
-                'url' : self.url,
+                'url' : $location.absUrl(),
                 'app_version' : app_version,
                 'app_name' : app_name,
                 'type' : self.type
