@@ -14,11 +14,11 @@ angular.module("feedback.createFeedback", [
     return {
         restrict : "E",
         scope : {
-            appName : '@'
+            appName : '@',
+            appVersion : '@'
         },
         link     : function (scope, element, attrs) {
             element.text("Create");
-            console.log(appName);
             element.on("click", function () {
                 $uibModal.open({
                     templateUrl: 'bower_components/feedback/modal/modal-feedback.html',
@@ -27,10 +27,10 @@ angular.module("feedback.createFeedback", [
                     size : 'lg',
                     resolve: {
                         app_version: function () {
-                            return self.appVersion;
+                            return scope.appVersion;
                         },
                         app_name: function () {
-                            return self.appName;
+                            return scope.appName;
                         }
                     }
                 });
