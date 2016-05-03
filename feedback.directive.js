@@ -5,9 +5,6 @@ angular.module("feedback.createFeedback", [
   "ngSanitize",
   "ui.bootstrap",
   "toaster",
-  "ui.router",
-  "pagination-front",
-  "ngStorage",
   "ng.deviceDetector"
 ])
 .directive("dirCreateFeedback", function ($uibModal) {
