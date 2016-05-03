@@ -12,9 +12,13 @@ angular.module("feedback.createFeedback", [
 ])
 .directive("dirCreateFeedback", function ($uibModal) {
     return {
-        restrict : "EA",
+        restrict : "E",
+        scope : {
+            appName : '@'
+        },
         link     : function (scope, element, attrs) {
             element.text("Create");
+            console.log(appName);
             element.on("click", function () {
                 $uibModal.open({
                     templateUrl: 'bower_components/feedback/modal/modal-feedback.html',
